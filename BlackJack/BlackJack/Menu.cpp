@@ -34,7 +34,6 @@ void RunMenu(map<int, function<void()>>& func_list)
                 else if (GetAsyncKeyState(VK_RETURN))
                 {
                     func_list[menuSelect]();
-                    cout << menuSelect << __func__;
                     selected = true;
                 }
                 previousKeyState = true;
