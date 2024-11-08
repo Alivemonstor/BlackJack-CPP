@@ -9,7 +9,7 @@
 using namespace std;
 
 
-void RunMenu(map<int, function<void()>>& func_list)
+void RunMenu(map<int, Menu>& func_list)
 {
     int menuSelect = 1;
     bool previousKeyState = false;
@@ -33,7 +33,7 @@ void RunMenu(map<int, function<void()>>& func_list)
                 }
                 else if (GetAsyncKeyState(VK_RETURN))
                 {
-                    func_list[menuSelect]();
+                    func_list[menuSelect].func();
                     selected = true;
                 }
                 previousKeyState = true;

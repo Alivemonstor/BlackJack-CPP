@@ -15,8 +15,12 @@ void Test() {
 int main()
 {
     cout << "Hi";
-    map<int, function<void()>> func_list{
-        {0, Test}
+    Menu Obj1;
+    vector<Menu> MenuList;
+
+
+    map<int, Menu> func_list{
+        {0, Obj1}
     };
     RunMenu(func_list);
 
