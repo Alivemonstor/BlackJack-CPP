@@ -3,4 +3,13 @@
 #include <functional>
 using namespace std;
 
-void RunMenu(map<int, function<void()>>& func_list);
+class Menu	{
+public:
+	string text;
+	function<void()> func;
+
+
+};
+
+
+void RunMenu(map<int, Menu>& func_list);

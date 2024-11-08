@@ -5,46 +5,64 @@
 #include "BlackJack.h"
 #include <map>
 #include <functional>
-#include <string>
+#include <sstream>
+#include <algorithm>
+
 using namespace std;
 
 
-void RunMenu(map<int, function<void()>>& func_list)
+void RunMenu(map<int, Menu&> func_list)
 {
-    int menuSelect = 1;
+    int menuSelect = 0;
+
     bool previousKeyState = false;
     bool selected = false; 
 
-    while (!selected) {
+	stringstream selection; 
 
-        if (GetAsyncKeyState(VK_UP) < 0 or GetAsyncKeyState(VK_DOWN) < 0 or GetAsyncKeyState(VK_RETURN) < 0)
+    while (!selected) 
+    {
+        int UpKeyState = GetAsyncKeyState(VK_UP);
+        int DownKeyState = GetAsyncKeyState(VK_DOWN);
+        int ReturnState = GetAsyncKeyState(VK_RETURN);
+
+        if (UpKeyState < 0 || DownKeyState < 0 || ReturnState < 0)
         {
+			cout << menuSelect << endl;
+
+            if (previousKeyState)
+            {
+                continue;
+            }
+
             if (!previousKeyState)
             {
-                if (GetAsyncKeyState(VK_UP)) {
-                    menuSelect += 1;
-                    cout << menuSelect;
-
-                }
-                else if (GetAsyncKeyState(VK_DOWN)) 
+                if (UpKeyState)
                 {
-                    menuSelect -= 1;
-                    cout << menuSelect;
+                    menuSelect++;
                 }
-                else if (GetAsyncKeyState(VK_RETURN))
+                else if (DownKeyState)
                 {
-                    func_list[menuSelect]();
+                    menuSelect--;
+                }
+                else if (ReturnState)
+                {
+                    func_list[menuSelect].func();
                     selected = true;
                 }
+
+                cout << menuSelect;
+
                 previousKeyState = true;
+
+                if (menuSelect > func_list.size()+1 || menuSelect < 1) {
+                    menuSelect = 0;
+                }
             }
         }
         else
         {
             previousKeyState = false;
-        }
-        if (menuSelect > func_list.size() or menuSelect < 1) {
-            menuSelect = 1;
         }
     };
 }

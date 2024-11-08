@@ -14,9 +14,12 @@ void Test() {
 
 int main()
 {
-    cout << "Hi";
-    map<int, function<void()>> func_list{
-        {0, Test}
+	Menu option1;
+	option1.text = "Test";
+	option1.func = Test;
+    map<int, Menu> func_list
+    {
+        {0, option1}
     };
     RunMenu(func_list);
 
