@@ -7,10 +7,10 @@
 #include <functional>
 
 
+
+
 void Play() {
     std::string Card = CardGenerator();
-    std::cout << Card;
-
 }
 
 void Leaderboard() {
@@ -23,14 +23,15 @@ void Quit() {
     
 int main()
 {
-	Menu option1;
-	option1.text = "Play";
+    _setmode(_fileno(stdout), _O_U16TEXT);
+    Menu option1;
+	option1.text = L"Play";
 	option1.func = Play;
     Menu option2;
-    option2.text = "Leaderboard";
+    option2.text = L"Leaderboard";
     option2.func = Leaderboard;
     Menu option3;
-    option3.text = "Quit";
+    option3.text = L"Quit";
     option3.func = Quit;
 
     std::map<int, Menu> func_list

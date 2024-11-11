@@ -68,18 +68,18 @@ void RunMenu(std::map<int, Menu>& func_list)
 void PrintMainMenu(std::map<int, Menu>& func_list)
 {
     system("cls");
-    std::cout << "------------------------------------------------" << std::endl;
-    std::cout << "--------------------- MENU ---------------------" << std::endl;
-    std::cout << "------------------------------------------------" << std::endl;
-    std::cout << std::endl;
-    std::cout << "Select an option using arrow keys" << std::endl;
+    std::wcout << "------------------------------------------------" << std::endl;
+    std::wcout << "--------------------- MENU ---------------------" << std::endl;
+    std::wcout << "------------------------------------------------" << std::endl;
+    std::wcout << std::endl;
+    std::wcout << "Select an option using arrow keys" << std::endl;
 
     for (int i = 0; i < func_list.size(); i++) {
         if (i == menuSelect-1) {
-            std::cout << "> " << func_list[i].text << std::endl;
+            std::wcout << L"> " << func_list[i].text << std::endl;
         }
         else {
-            std::cout << func_list[i].text << std::endl;
+            std::wcout << func_list[i].text << std::endl;
         }
     }
 }

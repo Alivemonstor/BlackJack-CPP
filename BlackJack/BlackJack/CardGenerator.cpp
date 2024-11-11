@@ -9,21 +9,24 @@
 
 std::string random_suit()
 {
+
     std::random_device device;
     std::mt19937 randomGenerator(device());
 
-    const char8_t* a = u8"\u2660";
-    const char8_t* b = u8"\u2665";
-    const char8_t* c = u8"\u2666";
-    const char8_t* d = u8"\u2663";
+
+    wchar_t a = L'\u2660';
+    wchar_t b = L'\u2665';
+    wchar_t c = L'\u2666';
+    wchar_t d = L'\u2663';
 
 
-    std::u8string CHARACTERS; 
-    
+    std::string CHARACTERS; 
+
     CHARACTERS += a;
     CHARACTERS += b;
     CHARACTERS += c;
     CHARACTERS += d;
+
 
     std::uniform_int_distribution<> distribution(0, CHARACTERS.size() - 1);
 
@@ -39,8 +42,10 @@ int random()
 
     std::random_device device;
     std::mt19937 randomGenerator(device());
+    int min = std::min(1, 14);
+    int max = std::max(14, 1);
 
-    std::uniform_int_distribution<int> udist(1, 14);
+    std::uniform_int_distribution<int> udist(min, max);
 
     return udist(randomGenerator);
 }
@@ -54,7 +59,7 @@ std::string CardGenerator() {
     };
 
     //1 2 3 4 5 6 7 8 9 10 11 k j q
-    int genRandom = random();
+    int genRandom = 0;
     std::string suit = random_suit();
     std::cout << suit << std::endl;
 
