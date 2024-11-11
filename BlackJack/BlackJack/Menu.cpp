@@ -1,24 +1,22 @@
+#pragma once
 #include <iostream>
-#include <vector>
 #include "Menu.h"
 #include <Windows.h>
 #include "BlackJack.h"
 #include <map>
 #include <functional>
-#include <sstream>
 #include <algorithm>
 
-using namespace std;
+int menuSelect = 1;
 
 
-void RunMenu(map<int, Menu&> func_list)
+void RunMenu(std::map<int, Menu>& func_list)
 {
-    int menuSelect = 0;
-
     bool previousKeyState = false;
     bool selected = false; 
+    PrintMainMenu(func_list);
 
-	stringstream selection; 
+
 
     while (!selected) 
     {
@@ -28,7 +26,6 @@ void RunMenu(map<int, Menu&> func_list)
 
         if (UpKeyState < 0 || DownKeyState < 0 || ReturnState < 0)
         {
-			cout << menuSelect << endl;
 
             if (previousKeyState)
             {
@@ -39,25 +36,26 @@ void RunMenu(map<int, Menu&> func_list)
             {
                 if (UpKeyState)
                 {
-                    menuSelect++;
+                    menuSelect--;
                 }
                 else if (DownKeyState)
                 {
-                    menuSelect--;
+                    menuSelect++;
                 }
                 else if (ReturnState)
                 {
-                    func_list[menuSelect].func();
+                    func_list[menuSelect-1].func();
                     selected = true;
+                    break;
                 }
 
-                cout << menuSelect;
 
                 previousKeyState = true;
 
-                if (menuSelect > func_list.size()+1 || menuSelect < 1) {
-                    menuSelect = 0;
+                if (menuSelect > func_list.size() || menuSelect < 1) {
+                    menuSelect = 1;
                 }
+                PrintMainMenu(func_list);
             }
         }
         else
@@ -65,4 +63,23 @@ void RunMenu(map<int, Menu&> func_list)
             previousKeyState = false;
         }
     };
+}
+
+void PrintMainMenu(std::map<int, Menu>& func_list)
+{
+    system("cls");
+    std::cout << "------------------------------------------------" << std::endl;
+    std::cout << "--------------------- MENU ---------------------" << std::endl;
+    std::cout << "------------------------------------------------" << std::endl;
+    std::cout << std::endl;
+    std::cout << "Select an option using arrow keys" << std::endl;
+
+    for (int i = 0; i < func_list.size(); i++) {
+        if (i == menuSelect-1) {
+            std::cout << "> " << func_list[i].text << std::endl;
+        }
+        else {
+            std::cout << func_list[i].text << std::endl;
+        }
+    }
 }
