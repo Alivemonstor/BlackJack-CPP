@@ -10,7 +10,7 @@
 
 
 void Play() {
-    std::string Card = CardGenerator();
+    std::wstring Card = CardGenerator();
 }
 
 void Leaderboard() {

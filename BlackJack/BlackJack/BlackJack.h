@@ -8,9 +8,9 @@
 #include <stdio.h>
 
 
-std::string CardGenerator();
+std::wstring CardGenerator();
 int random();
-std::string random_suit();
+std::wstring random_suit();
 void Play();
 void Leaderboard();
 void Quit();

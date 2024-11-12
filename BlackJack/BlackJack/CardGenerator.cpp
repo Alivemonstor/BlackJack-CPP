@@ -7,7 +7,7 @@
 #include <sstream>
 
 
-std::string random_suit()
+std::wstring random_suit()
 {
 
     std::random_device device;
@@ -20,17 +20,18 @@ std::string random_suit()
     wchar_t d = L'\u2663';
 
 
-    std::string CHARACTERS; 
+    std::wstring CHARACTERS; 
 
     CHARACTERS += a;
     CHARACTERS += b;
     CHARACTERS += c;
     CHARACTERS += d;
+    
 
 
     std::uniform_int_distribution<> distribution(0, CHARACTERS.size() - 1);
 
-    std::string random_string;
+    std::wstring random_string;
 
     random_string += CHARACTERS[distribution(randomGenerator)];
 
@@ -50,41 +51,37 @@ int random()
     return udist(randomGenerator);
 }
 
-std::string CardGenerator() {
-    std::string output;
-    std::map<int, std::string> convert {
-        {12, "k"},
-        {13, "j"},
-        {14, "q"}
+std::wstring CardGenerator() {
+    std::wstring output;
+    std::map<int, std::wstring> convert {
+        {12, L"K"},
+        {13, L"K"},
+        {14, L"K"}
     };
 
     //1 2 3 4 5 6 7 8 9 10 11 k j q
-    int genRandom = 0;
-    std::string suit = random_suit();
-    std::cout << suit << std::endl;
+    int genRandom = random();
+    std::wstring suit = random_suit();
+    std::wcout << suit << std::endl;
 
     if (convert.contains(genRandom)) {
-        std::string output = convert[genRandom];
+        std::wstring output = convert[genRandom];
     }
     else {
-        std::string output = std::to_string(genRandom);
+        //std::wstring output = std::to_string(genRandom);
     }
 
-    std::stringstream top;
-    std::stringstream bottom;
-    std::stringstream side;
+    std::wstringstream top;
+    std::wstringstream bottom;
+    std::wstringstream side;
 
-    top << "┌─────────┐";
-    bottom << "└─────────┘";
-    side << "│         │";
+    top << R"(┌─────────┐)";
+    bottom << L'└─────────┘';
+    side << L'│         │';
 
-    std::cout << top.str() << std::endl;
-    std::cout << side.str() << std::endl;
-    std::cout << bottom.str() << std::endl;
-
-
-
-
+    std::wcout << top.str() << std::endl;
+    std::wcout << side.str() << std::endl;
+    std::wcout << bottom.str() << std::endl;
 
 
 

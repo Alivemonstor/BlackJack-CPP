@@ -4,7 +4,7 @@
 
 class Menu	{
 public:
-	wchar_t text;
+	const wchar_t* text;
 	std::function<void()> func;
 };
 
