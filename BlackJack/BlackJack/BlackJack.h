@@ -9,6 +9,7 @@
 #include <sstream>
 
 
+
 std::wstringstream CardGenerator();
 int random();
 std::wstring random_suit();

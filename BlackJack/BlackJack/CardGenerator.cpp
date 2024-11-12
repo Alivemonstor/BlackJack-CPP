@@ -65,8 +65,6 @@ std::wstringstream CardGenerator() {
 		output = std::to_wstring(genRandom);
     }
 
-    std::wstringstream top;
-    std::wstringstream bottom;
     std::wstringstream toOut;
 
 
