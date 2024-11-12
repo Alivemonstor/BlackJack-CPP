@@ -104,7 +104,7 @@ std::wstringstream CardGenerator() {
 
     }
     
-    toOut << L"└───────────┘";
+    toOut << L"└───────────┘\n";
 
     return toOut;
 };
