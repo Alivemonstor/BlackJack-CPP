@@ -6,9 +6,10 @@
 #include <io.h>
 #include <fcntl.h>
 #include <stdio.h>
+#include <sstream>
 
 
-std::wstring CardGenerator();
+std::wstringstream CardGenerator();
 int random();
 std::wstring random_suit();
 void Play();

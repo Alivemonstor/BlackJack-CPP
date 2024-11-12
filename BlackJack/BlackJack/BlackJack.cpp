@@ -10,8 +10,8 @@
 
 
 void Play() {
-    std::wstring Card = CardGenerator();
-	std::wcout << Card << std::endl;
+    std::wstringstream Card = CardGenerator();
+    std::wcout << Card.str();
 }
 
 void Leaderboard() {

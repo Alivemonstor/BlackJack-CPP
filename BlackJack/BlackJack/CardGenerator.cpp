@@ -4,7 +4,6 @@
 #include "BlackJack.h"
 #include <map>
 #include <string>
-#include <sstream>
 
 
 std::wstring random_suit()
@@ -26,7 +25,6 @@ std::wstring random_suit()
     CHARACTERS += d;
     
 
-
     std::uniform_int_distribution<> distribution(0, CHARACTERS.size() - 1);
 
     std::wstring random_string;
@@ -43,46 +41,72 @@ int random()
 
     std::uniform_int_distribution<int> udist(1, 14);
 
-
     return udist(randomGenerator);
 }
 
-std::wstring CardGenerator() {
+std::wstringstream CardGenerator() {
     std::wstring output;
     std::map<int, std::wstring> convert {
+        {11, L"A"},
         {12, L"K"},
         {13, L"J"},
         {14, L"Q"}
     };
 
     //1 2 3 4 5 6 7 8 9 10 11 k j q
+
     int genRandom = random();
     std::wstring suit = random_suit();
 
     if (convert.contains(genRandom)) {
         output = convert[genRandom];
-		std::wcout << output << std::endl;
     }
     else {
 		output = std::to_wstring(genRandom);
-		std::wcout << output << std::endl;
     }
-
-    std::wcout << output << std::endl;
 
     std::wstringstream top;
     std::wstringstream bottom;
-    std::wstringstream side;
+    std::wstringstream toOut;
 
-    top << L'┌─────────┐';
-    bottom << L'└─────────┘';
-    side << L'│         │';
 
-    std::wcout << top.str() << std::endl;
-    std::wcout << side.str() << std::endl;
-    std::wcout << bottom.str() << std::endl;
+    toOut << L"┌───────────┐\n";
+    for (size_t i = 0; i < 8; i++) {
+        if (genRandom != 10) {
+            if (i == 0) {
+                toOut << L"│" << output << suit << L"         │" << L"\n";
+            }
+            else if (i == 3) {
+                toOut << L"│     " << suit << L"     │" << L"\n";
+            }
+            else if (i == 7) {
+                toOut << L"│         " << output << suit << L"│" << L"\n";
+            }
+            else {
+                toOut << L"│           │" << L"\n";
+            }
+        }
+        else {
+            if (i == 0) {
+                toOut << L"│" << output << suit << L"        │" << L"\n";
+            }
+            else if (i == 3) {
+                toOut << L"│     " << suit << L"     │" << L"\n";
+            }
+            else if (i == 7) {
+                toOut << L"│        " << output << suit << L"│" << L"\n";
+            }
+            else {
+                toOut << L"│           │" << L"\n";
+            }
+        }
 
-    return output;
+
+    }
+    
+    toOut << L"└───────────┘";
+
+    return toOut;
 };
 
 
