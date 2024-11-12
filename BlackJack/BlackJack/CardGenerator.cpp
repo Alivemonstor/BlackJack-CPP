@@ -9,10 +9,8 @@
 
 std::wstring random_suit()
 {
-
     std::random_device device;
     std::mt19937 randomGenerator(device());
-
 
     wchar_t a = L'\u2660';
     wchar_t b = L'\u2665';
@@ -40,13 +38,11 @@ std::wstring random_suit()
 
 int random()
 {
-
     std::random_device device;
     std::mt19937 randomGenerator(device());
-    int min = std::min(1, 14);
-    int max = std::max(14, 1);
 
-    std::uniform_int_distribution<int> udist(min, max);
+    std::uniform_int_distribution<int> udist(1, 14);
+
 
     return udist(randomGenerator);
 }
@@ -55,35 +51,36 @@ std::wstring CardGenerator() {
     std::wstring output;
     std::map<int, std::wstring> convert {
         {12, L"K"},
-        {13, L"K"},
-        {14, L"K"}
+        {13, L"J"},
+        {14, L"Q"}
     };
 
     //1 2 3 4 5 6 7 8 9 10 11 k j q
     int genRandom = random();
     std::wstring suit = random_suit();
-    std::wcout << suit << std::endl;
 
     if (convert.contains(genRandom)) {
-        std::wstring output = convert[genRandom];
+        output = convert[genRandom];
+		std::wcout << output << std::endl;
     }
     else {
-        //std::wstring output = std::to_string(genRandom);
+		output = std::to_wstring(genRandom);
+		std::wcout << output << std::endl;
     }
+
+    std::wcout << output << std::endl;
 
     std::wstringstream top;
     std::wstringstream bottom;
     std::wstringstream side;
 
-    top << R"(┌─────────┐)";
+    top << L'┌─────────┐';
     bottom << L'└─────────┘';
     side << L'│         │';
 
     std::wcout << top.str() << std::endl;
     std::wcout << side.str() << std::endl;
     std::wcout << bottom.str() << std::endl;
-
-
 
     return output;
 };

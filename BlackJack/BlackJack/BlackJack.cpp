@@ -11,6 +11,7 @@
 
 void Play() {
     std::wstring Card = CardGenerator();
+	std::wcout << Card << std::endl;
 }
 
 void Leaderboard() {
