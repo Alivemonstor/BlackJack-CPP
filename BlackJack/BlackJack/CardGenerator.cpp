@@ -44,7 +44,7 @@ int random()
     return udist(randomGenerator);
 }
 
-std::wstringstream CardGenerator() {
+std::pair<std::wstring, int> CardGenerator() {
     std::wstring output;
     std::map<int, std::wstring> convert {
         {11, L"A"},
@@ -53,7 +53,7 @@ std::wstringstream CardGenerator() {
         {14, L"Q"}
     };
 
-    //1 2 3 4 5 6 7 8 9 10 11 k j q
+    //1 2 3 4 5 6 7 8 9 10 a k j q
 
     int genRandom = random();
     std::wstring suit = random_suit();
@@ -69,44 +69,66 @@ std::wstringstream CardGenerator() {
 
 
     toOut << L"┌───────────┐\n";
-    for (size_t i = 0; i < 8; i++) {
-        if (genRandom != 10) {
-            if (i == 0) {
-                toOut << L"│" << output << suit << L"         │" << L"\n";
-            }
-            else if (i == 3) {
-                toOut << L"│     " << suit << L"     │" << L"\n";
-            }
-            else if (i == 7) {
-                toOut << L"│         " << output << suit << L"│" << L"\n";
-            }
-            else {
-                toOut << L"│           │" << L"\n";
-            }
-        }
-        else {
-            if (i == 0) {
-                toOut << L"│" << output << suit << L"        │" << L"\n";
-            }
-            else if (i == 3) {
-                toOut << L"│     " << suit << L"     │" << L"\n";
-            }
-            else if (i == 7) {
-                toOut << L"│        " << output << suit << L"│" << L"\n";
-            }
-            else {
-                toOut << L"│           │" << L"\n";
-            }
-        }
+    for (size_t i = 0; i < 8; i++)
+    {
+        std::wstring padding = genRandom == 10 ? L"" : L" ";
 
-
+        switch (i)
+        {
+        case 0:
+        {
+            toOut << L"│" << output << suit << L"        " << padding << L"│" << L"\n";
+            break;
+        }
+        case 3:
+        {
+            toOut << L"│     " << suit << L"     │" << L"\n";
+            break;
+        }
+        case 7:
+        {
+            toOut << L"│        " << padding << output << suit << L"│" << L"\n";
+            break;
+        }
+        default:
+        {
+            toOut << L"│           │" << L"\n";
+            break;
+        }
+        }
     }
-    
+
     toOut << L"└───────────┘\n";
 
-    return toOut;
+    if (genRandom > 10) {
+        genRandom = 10;
+    }
+
+    std::pair<std::wstring, int> returnValues = std::make_pair(toOut.str(), genRandom);
+
+    return returnValues;
 };
 
+std::pair<std::wstring, int> GenerateHidden() {
+    std::wstringstream toOut;
+
+    toOut << L"┌───────────┐\n";
+    for (size_t i = 0; i < 8; i++)
+    {
+        toOut << L"│***********│" << L"\n";
+    }
+
+    toOut << L"└───────────┘\n";
+
+    int genRandom = random();
+
+    if (genRandom > 10) {
+        genRandom = 10;
+    }
 
 
+    std::pair<std::wstring, int> returnValues = std::make_pair(toOut.str(), genRandom);
+
+    return returnValues;
+};
 

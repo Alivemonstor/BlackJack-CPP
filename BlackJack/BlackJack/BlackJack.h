@@ -7,12 +7,34 @@
 #include <fcntl.h>
 #include <stdio.h>
 #include <sstream>
+#include <vector>
+#include <windows.h>
 
 
 
-std::wstringstream CardGenerator();
+class Deck {
+public:
+	std::vector<std::wstring> Cards;
+	int TotalScore;
+
+public:
+	void AddCard(std::wstring Card) {
+		Cards.push_back(Card);
+	};
+	void RemoveCards() {
+		Cards.clear();
+	};
+	void UpdateScore(int score) {
+		TotalScore += score;
+	}
+};
+
+
+std::pair<std::wstring, int> GenerateHidden();
+std::pair<std::wstring, int> CardGenerator();
 int random();
 std::wstring random_suit();
 void Play();
 void Leaderboard();
 void Quit();
+void Ask();

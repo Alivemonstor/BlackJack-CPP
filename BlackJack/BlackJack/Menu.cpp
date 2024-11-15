@@ -68,9 +68,9 @@ void RunMenu(std::map<int, Menu>& func_list)
 void PrintMainMenu(std::map<int, Menu>& func_list)
 {
     system("cls");
-    std::wcout << "------------------------------------------------" << std::endl;
-    std::wcout << "--------------------- MENU ---------------------" << std::endl;
-    std::wcout << "------------------------------------------------" << std::endl;
+    //std::wcout << "------------------------------------------------" << std::endl;
+    //std::wcout << "--------------------- MENU ---------------------" << std::endl;
+    //std::wcout << "------------------------------------------------" << std::endl;
     std::wcout << std::endl;
     std::wcout << "Select an option using arrow keys" << std::endl;
 

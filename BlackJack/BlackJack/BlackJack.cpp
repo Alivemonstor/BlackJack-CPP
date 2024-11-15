@@ -11,10 +11,54 @@
 
 void Play() {
     system("cls");
-    std::wstringstream Card = CardGenerator();
-    std::wstringstream Card1 = CardGenerator();
+    Deck pDeck;
+    Deck hDeck;
 
-    std::wcout << Card.str() << Card1.str();
+    std::wcout << "These are your starter cards: " << std::endl;
+
+    for (size_t i = 0; i < 2; i++) {
+        std::pair<std::wstring, int> Card = CardGenerator();
+        std::wcout << Card.second << std::endl;
+        std::wcout << Card.first << std::endl;
+        pDeck.AddCard(Card.first);
+        pDeck.UpdateScore(Card.second);
+    };
+
+    std::wcout << pDeck.TotalScore;
+    Sleep(5000);
+
+    system("cls");
+
+    std::wcout << "These are the houses' starter cards: " << std::endl;
+
+    for (size_t i = 0; i < 2; i++) {
+
+        switch (i)
+        {
+        case 0:
+        {
+
+            std::pair<std::wstring, int> Card = CardGenerator();
+            std::wcout << Card.second << std::endl;
+            std::wcout << Card.first << std::endl;
+            hDeck.AddCard(Card.first);
+            hDeck.UpdateScore(Card.second);
+            break;
+        }
+        case 1:
+        {
+            std::pair<std::wstring, int> Hidden = GenerateHidden();
+            std::wcout << Hidden.second << std::endl;
+            std::wcout << Hidden.first << std::endl;
+            hDeck.AddCard(Hidden.first);
+            hDeck.UpdateScore(Hidden.second);
+            break;
+        }
+        }
+    };
+    std::wcout << hDeck.TotalScore;
+
+
 }
 
 void Leaderboard() {
@@ -25,9 +69,16 @@ void Quit() {
     return;
 }
     
+
+void Ask() {
+    
+}
+
+
 int main()
 {
     _setmode(_fileno(stdout), _O_U16TEXT);
+
     Menu option1;
 	option1.text = L"Play";
 	option1.func = Play;
