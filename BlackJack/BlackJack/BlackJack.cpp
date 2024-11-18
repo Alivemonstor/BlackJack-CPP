@@ -24,7 +24,6 @@ void Play() {
         pDeck.UpdateScore(Card.second);
     };
 
-    std::wcout << pDeck.TotalScore;
     Sleep(5000);
 
     system("cls");
@@ -56,9 +55,8 @@ void Play() {
         }
         }
     };
-    std::wcout << hDeck.TotalScore;
-
-
+    std::wcout << hDeck.GetScore();
+	std::wcout << pDeck.GetScore();
 }
 
 void Leaderboard() {
@@ -99,5 +97,4 @@ int main()
 
     RunMenu(func_list);
 
-    return 0;
 }

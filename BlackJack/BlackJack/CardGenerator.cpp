@@ -100,7 +100,7 @@ std::pair<std::wstring, int> CardGenerator() {
 
     toOut << L"└───────────┘\n";
 
-    if (genRandom > 10) {
+    if (genRandom > 11) {
         genRandom = 10;
     }
 

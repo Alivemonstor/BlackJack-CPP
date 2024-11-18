@@ -13,7 +13,7 @@
 
 
 class Deck {
-public:
+private:
 	std::vector<std::wstring> Cards;
 	int TotalScore;
 
@@ -24,8 +24,14 @@ public:
 	void RemoveCards() {
 		Cards.clear();
 	};
+	std::wstring GetCard(int index) {
+		return Cards[index];
+	};
 	void UpdateScore(int score) {
 		TotalScore += score;
+	}
+	int GetScore() {
+		return TotalScore;
 	}
 };
 
