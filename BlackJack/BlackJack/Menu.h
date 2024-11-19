@@ -9,6 +9,6 @@ public:
 };
 
 
-void RunMenu(std::map<int, Menu>& func_list);
-void PrintMainMenu(std::map<int, Menu>& func_list);
+void RunMenu(std::map<int, Menu>& func_list, bool isMainMenu);
+void PrintMainMenu(std::map<int, Menu>& func_list, bool isMainMenu);
 

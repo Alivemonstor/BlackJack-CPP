@@ -10,13 +10,11 @@
 int menuSelect = 1;
 
 
-void RunMenu(std::map<int, Menu>& func_list)
+void RunMenu(std::map<int, Menu>& func_list, bool isMainMenu)
 {
     bool previousKeyState = false;
     bool selected = false; 
-    PrintMainMenu(func_list);
-
-
+    PrintMainMenu(func_list, isMainMenu);
 
     while (!selected) 
     {
@@ -55,7 +53,7 @@ void RunMenu(std::map<int, Menu>& func_list)
                 if (menuSelect > func_list.size() || menuSelect < 1) {
                     menuSelect = 1;
                 }
-                PrintMainMenu(func_list);
+                PrintMainMenu(func_list, isMainMenu);
             }
         }
         else
@@ -65,13 +63,15 @@ void RunMenu(std::map<int, Menu>& func_list)
     };
 }
 
-void PrintMainMenu(std::map<int, Menu>& func_list)
+void PrintMainMenu(std::map<int, Menu>& func_list, bool isMainMenu)
 {
     system("cls");
-    std::wcout << "------------------------------------------------" << std::endl;
-    std::wcout << "--------------------- MENU ---------------------" << std::endl;
-    std::wcout << "------------------------------------------------" << std::endl;
-    std::wcout << std::endl;
+    if (isMainMenu) {
+        std::wcout << "------------------------------------------------" << std::endl;
+        std::wcout << "--------------------- MENU ---------------------" << std::endl;
+        std::wcout << "------------------------------------------------" << std::endl;
+        std::wcout << std::endl;
+    }
     std::wcout << "Select an option using arrow keys" << std::endl;
 
     for (int i = 0; i < func_list.size(); i++) {

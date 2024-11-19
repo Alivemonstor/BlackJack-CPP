@@ -10,8 +10,6 @@
 #include <vector>
 #include <windows.h>
 
-
-
 class Deck {
 private:
 	std::vector<std::wstring> Cards;
@@ -41,6 +39,5 @@ std::pair<std::wstring, int> CardGenerator();
 int random();
 std::wstring random_suit();
 void Play();
-void Leaderboard();
 void Quit();
-void Ask();
+void Hit();

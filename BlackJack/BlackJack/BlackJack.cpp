@@ -6,13 +6,34 @@
 #include <map>
 #include <functional>
 
-
+Deck pDeck;
+Deck hDeck;
 
 
 void Play() {
     system("cls");
-    Deck pDeck;
-    Deck hDeck;
+    bool isGame;
+
+    auto stand = []()
+    {
+        std::wcout << "You have stood" << std::endl;
+        Sleep(5000);
+
+    };
+
+    Menu option1;
+    option1.text = L"Hit";
+    option1.func = Hit;
+    Menu option2;
+    option2.text = L"Stand";
+    option2.func = stand;
+
+    std::map<int, Menu> play_list
+    {
+        {0, option1},
+        {1, option2},
+
+    };
 
     std::wcout << "These are your starter cards: " << std::endl;
 
@@ -55,23 +76,36 @@ void Play() {
         }
         }
     };
-    std::wcout << hDeck.GetScore();
-	std::wcout << pDeck.GetScore();
+
+    Sleep(5000);
+
+    isGame = true;
+
+    while (isGame) {
+        if (pDeck > 21 )
+        system("cls");
+        RunMenu(play_list, false);
+    }
 }
 
-void Leaderboard() {
-    std::cout << "hello";
+void Hit() {
+    std::wcout << "You hit";
+    std::pair<std::wstring, int> Card = CardGenerator();
+    std::wcout << Card.second << std::endl;
+    std::wcout << Card.first << std::endl;
+    pDeck.AddCard(Card.first);
+    pDeck.UpdateScore(Card.second);
+
+    Sleep(5000);
+}
+
+void HousePlay() {
+
 }
 
 void Quit() {
     return;
 }
-    
-
-void Ask() {
-    
-}
-
 
 int main()
 {
@@ -81,20 +115,16 @@ int main()
 	option1.text = L"Play";
 	option1.func = Play;
     Menu option2;
-    option2.text = L"Leaderboard";
-    option2.func = Leaderboard;
-    Menu option3;
-    option3.text = L"Quit";
-    option3.func = Quit;
+    option2.text = L"Quit";
+    option2.func = Quit;
 
     std::map<int, Menu> func_list
     {
         {0, option1},
         {1, option2},
-        {2, option3},
 
     };
 
-    RunMenu(func_list);
+    RunMenu(func_list, true);
 
 }
