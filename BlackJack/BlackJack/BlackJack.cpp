@@ -82,7 +82,10 @@ void Play() {
     isGame = true;
 
     while (isGame) {
-        if (pDeck > 21 )
+        if (pDeck.GetScore() > 21) {
+            
+            break;
+        }
         system("cls");
         RunMenu(play_list, false);
     }
