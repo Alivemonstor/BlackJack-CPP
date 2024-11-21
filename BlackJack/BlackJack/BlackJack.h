@@ -36,8 +36,11 @@ public:
 
 std::pair<std::wstring, int> GenerateHidden();
 std::pair<std::wstring, int> CardGenerator();
+std::pair<std::wstring, int> CardGeneratorWithNumber(int number);
+void RunLoadingScreen();
 int random();
 std::wstring random_suit();
 void Play();
+void HousePlay();
 void Quit();
 void Hit();

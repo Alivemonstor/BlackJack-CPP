@@ -14,10 +14,13 @@ void Play() {
     system("cls");
     bool isGame;
 
+
+
     auto stand = []()
     {
         std::wcout << "You have stood" << std::endl;
         Sleep(5000);
+        HousePlay();
 
     };
 
@@ -84,6 +87,7 @@ void Play() {
     while (isGame) {
         if (pDeck.GetScore() > 21) {
             
+
             break;
         }
         system("cls");
@@ -100,6 +104,9 @@ void Hit() {
     pDeck.UpdateScore(Card.second);
 
     Sleep(5000);
+
+    HousePlay();
+
 }
 
 void HousePlay() {
@@ -110,9 +117,29 @@ void Quit() {
     return;
 }
 
+void RunLoadingScreen() {
+    for (int i = 0; i < 15; i++) {
+        system("cls");
+
+        std::pair<std::wstring, int> Card = CardGeneratorWithNumber(i);
+
+        std::wcout << Card.first << std::endl;
+
+        Sleep(500);
+    }
+    system("cls");
+    std::wcout << "------------------------------------------------" << std::endl;
+    std::wcout << "--------------------- Welcome ------------------" << std::endl;
+    std::wcout << "------------------------------------------------" << std::endl;
+    std::wcout << std::endl;
+    Sleep(1000);
+};
+
 int main()
 {
     _setmode(_fileno(stdout), _O_U16TEXT);
+
+    RunLoadingScreen();
 
     Menu option1;
 	option1.text = L"Play";
