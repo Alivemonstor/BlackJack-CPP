@@ -39,7 +39,7 @@ int random()
     std::random_device device;
     std::mt19937 randomGenerator(device());
 
-    std::uniform_int_distribution<int> udist(1, 14);
+    std::uniform_int_distribution<int> udist(1, 13);
 
     return udist(randomGenerator);
 }
@@ -47,13 +47,12 @@ int random()
 std::pair<std::wstring, int> CardGeneratorWithNumber(int number) {
     std::wstring output;
     std::map<int, std::wstring> convert{
-        {11, L"A"},
-        {12, L"K"},
-        {13, L"J"},
-        {14, L"Q"}
+        {11, L"K"},
+        {12, L"J"},
+        {13, L"Q"}
     };
 
-    //1 2 3 4 5 6 7 8 9 10 a k j q
+    //1 2 3 4 5 6 7 8 9 10 k j q
 
     int genRandom = number;
     std::wstring suit = random_suit();
@@ -100,7 +99,7 @@ std::pair<std::wstring, int> CardGeneratorWithNumber(int number) {
 
     toOut << L"└───────────┘\n";
 
-    if (genRandom > 11) {
+    if (genRandom > 10) {
         genRandom = 10;
     }
 
@@ -112,13 +111,12 @@ std::pair<std::wstring, int> CardGeneratorWithNumber(int number) {
 std::pair<std::wstring, int> CardGenerator() {
     std::wstring output;
     std::map<int, std::wstring> convert {
-        {11, L"A"},
-        {12, L"K"},
-        {13, L"J"},
-        {14, L"Q"}
+        {11, L"K"},
+        {12, L"J"},
+        {13, L"Q"}
     };
 
-    //1 2 3 4 5 6 7 8 9 10 a k j q
+    //1 2 3 4 5 6 7 8 9 10 k j q
 
     int genRandom = random();
     std::wstring suit = random_suit();
@@ -165,7 +163,7 @@ std::pair<std::wstring, int> CardGenerator() {
 
     toOut << L"└───────────┘\n";
 
-    if (genRandom > 11) {
+    if (genRandom > 10) {
         genRandom = 10;
     }
 
