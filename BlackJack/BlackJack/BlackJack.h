@@ -19,8 +19,14 @@ public:
 	void AddCard(std::wstring Card) {
 		Cards.push_back(Card);
 	};
+	void RemoveCard(int index) {
+		Cards.erase(Cards.begin() + index);
+	};
 	void RemoveCards() {
 		Cards.clear();
+	};
+	std::vector<std::wstring> GetCards() {
+		return Cards;
 	};
 	std::wstring GetCard(int index) {
 		return Cards[index];
@@ -30,6 +36,9 @@ public:
 	}
 	int GetScore() {
 		return TotalScore;
+	}
+	void ClearScore() {
+		TotalScore = 0;
 	}
 };
 
@@ -41,6 +50,8 @@ void RunLoadingScreen();
 int random();
 std::wstring random_suit();
 void Play();
-void HousePlay();
+void HousePlay(int hiddenscore);
 void Quit();
 void Hit();
+void EndGame();
+void CreateMainMenu();
